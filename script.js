@@ -177,3 +177,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+// Sort button toggle functionality
+const sortButton = document.querySelector('.sort-button');
+let isAscending = true; // Default sorting is ascending
+
+sortButton.addEventListener('click', () => {
+    sortSelect.value = isAscending ? 'price-desc' : 'price-asc'; // Toggle between 'price-desc' and 'price-asc'
+    isAscending = !isAscending; // Flip the sort order for next click
+    currentProductCount = 0; // Reset product count for new sorting
+    loadProducts(); // Reload products with the new sort order
+});
