@@ -4,7 +4,6 @@ const shimmerContainer = document.getElementById('shimmerContainer');
 const totalProductsCount = document.getElementById('totalProducts');
 const sortSelect = document.getElementById('sort');
 const searchInput = document.getElementById('searchInput');
-const inStockCheckbox = document.getElementById('inStockCheckbox');
 const categoryCheckboxes = document.querySelectorAll('.filter__category-checkbox');
 
 let productData = [];
@@ -22,25 +21,25 @@ async function fetchProducts() {
         const data = await response.json();
         productData = data;
         totalProductsCount.textContent = `${productData.length} Results`;
-        loadProducts(); // Initial load
+        loadProducts();
     } catch (error) {
         console.error('Error fetching products:', error);
         showError('Failed to load products. Please try again later.');
     } finally {
-        hideShimmer(); // Hide shimmer after loading
+        hideShimmer();
     }
 }
 
 // Show shimmer
 function showShimmer() {
-    shimmerContainer.style.display = 'grid'; // Show shimmer cards
-    productList.style.display = 'none'; // Hide products list while loading
+    shimmerContainer.style.display = 'grid';
+    productList.style.display = 'none';
 }
 
 // Hide shimmer
 function hideShimmer() {
-    shimmerContainer.style.display = 'none'; // Hide shimmer cards
-    productList.style.display = 'grid'; // Show products list after loading
+    shimmerContainer.style.display = 'none';
+    productList.style.display = 'grid';
 }
 
 // Show error message
@@ -51,7 +50,7 @@ function showError(message) {
     document.body.appendChild(errorContainer);
     setTimeout(() => {
         errorContainer.remove();
-    }, 5000); // Remove error message after 5 seconds
+    }, 5000);
 }
 
 // Load Products with filtering and sorting
@@ -62,12 +61,12 @@ function loadProducts() {
 
     // Clear product list before loading new products
     if (currentProductCount === 0) {
-        productList.innerHTML = ''; // Clear previous products only on first load
+        productList.innerHTML = '';
     }
 
     // Check if there are products to display
     if (productChunk.length === 0) {
-        loadMoreButton.style.display = 'none'; // Hide load more if no products
+        loadMoreButton.style.display = 'none';
         return;
     }
 
@@ -87,29 +86,28 @@ function loadProducts() {
         const likeButton = productItem.querySelector('.products__like-button');
         likeButton.addEventListener('click', () => {
             if (likeButton.classList.toggle('liked')) {
-                likeButton.innerHTML = '❤️'; // Change to filled heart
+                likeButton.innerHTML = '❤️';
             } else {
-                likeButton.innerHTML = '🤍'; // Change to hollow heart
+                likeButton.innerHTML = '🤍';
             }
         });
 
         productList.appendChild(productItem);
     });
 
-    currentProductCount += productChunk.length; // Increment by the number of loaded products
+    currentProductCount += productChunk.length;
 
     // Hide Load More button if all products are loaded
     if (currentProductCount >= sortedProducts.length) {
-        loadMoreButton.style.display = 'none'; // Hide button if no more products to load
+        loadMoreButton.style.display = 'none';
     } else {
-        loadMoreButton.style.display = 'block'; // Show Load More button if there are more products
+        loadMoreButton.style.display = 'block';
     }
 }
 
 // Filter Products
 function filterProducts(products) {
     const searchTerm = searchInput.value.toLowerCase();
-    const showInStockOnly = inStockCheckbox.checked;
 
     // Get selected categories
     const selectedCategories = Array.from(categoryCheckboxes)
@@ -118,10 +116,9 @@ function filterProducts(products) {
 
     const filtered = products.filter(product => {
         const matchesSearch = product.title.toLowerCase().includes(searchTerm);
-        const matchesStock = showInStockOnly ? product.rating.count > 0 : true;
         const matchesCategory = selectedCategories.length > 0 ? selectedCategories.includes(product.category) : true; // If no category is selected, include all products
 
-        return matchesSearch && matchesStock && matchesCategory;
+        return matchesSearch && matchesCategory;
     });
 
     totalProductsCount.textContent = `${filtered.length} Results`; // Update count
@@ -151,25 +148,20 @@ function sortProducts(products) {
 loadMoreButton.addEventListener('click', loadProducts);
 
 sortSelect.addEventListener('change', () => {
-    currentProductCount = 0; // Reset count for sorting
-    loadProducts(); // Reload products with sorting
+    currentProductCount = 0;
+    loadProducts();
 });
 
 searchInput.addEventListener('input', () => {
-    currentProductCount = 0; // Reset count for new search
-    loadProducts(); // Reload products with search input
-});
-
-inStockCheckbox.addEventListener('change', () => {
-    currentProductCount = 0; // Reset count for in-stock filter
-    loadProducts(); // Reload products with in-stock filter
+    currentProductCount = 0;
+    loadProducts();
 });
 
 // Add event listeners for category checkboxes
 categoryCheckboxes.forEach(checkbox => {
     checkbox.addEventListener('change', () => {
-        currentProductCount = 0; // Reset count for category filter
-        loadProducts(); // Reload products on category change
+        currentProductCount = 0;
+        loadProducts();
     });
 });
 
@@ -178,9 +170,10 @@ window.onload = fetchProducts;
 
 document.addEventListener('DOMContentLoaded', () => {
     const hamburger = document.querySelector('.hamburger');
-    const nav = document.querySelector('.header__nav');
+    const filters = document.querySelector('.filter');
 
     hamburger.addEventListener('click', () => {
-        nav.classList.toggle('active');
+        filters.classList.toggle('active');
     });
 });
+

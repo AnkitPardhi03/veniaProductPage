@@ -55,11 +55,11 @@
         <div>
             <nav>
                 <ul class="breadcrumb">
-                    <li class="breadcrumb__item"><a class="breadcrumb__link" href="#">Home</a></li>
+                    <li class="breadcrumb__item"><a class="breadcrumb__link" href="#">Clothing</a></li>
                     <span class="breadcrumb__separator">/</span>
-                    <li class="breadcrumb__item"><a class="breadcrumb__link" href="#">Products</a></li>
+                    <li class="breadcrumb__item"><a class="breadcrumb__link" href="#">Women’s</a></li>
                     <span class="breadcrumb__separator">/</span>
-                    <li class="breadcrumb__item"><a class="breadcrumb__link" href="#">Category</a></li>
+                    <li class="breadcrumb__item"><a class="breadcrumb__link" href="#">Outerwear</a></li>
                 </ul>
             </nav>
         </div>
@@ -67,7 +67,7 @@
         <section class="filter">
             <h3 class="filter__title">Filters</h3>
             <hr />
-            <p>Categories</p>
+            <p><b>Categories</b></p>
             <br />
             <div class="filter__categories">
                 <label class="filter__category"> <input type="checkbox" class="filter__category-checkbox" value="jewelery" /> Jewellery </label>
@@ -76,15 +76,29 @@
                 <label class="filter__category"> <input type="checkbox" class="filter__category-checkbox" value="women's clothing" /> Women's Clothing </label>
             </div>
 
-            <p class="filter__title">In Stock</p>
-            <label class="filter__in-stock"> <input type="checkbox" id="inStockCheckbox" /> Show In Stock Only </label>
+            <!-- <p class="filter__title"><b>In Stock</b></p>
+            <label class="filter__in-stock"> <input type="checkbox" id="inStockCheckbox" /> Show In Stock Only </label> -->
 
             <!-- Search Molecule -->
-            <p class="filter__title">Search Product</p>
+            <p class="filter__title"><b>Search</b></p>
             <label for="search" class="filter__search">
                 <input type="text" class="filter__search" placeholder="Search products..." id="searchInput" />
             </label>
             <hr />
+
+        </section>
+        <section class="filterMobile">
+            <div class="filter-sort-container">
+                <button class="filter-button">
+                    <span class="filter-icon"><img src="images/sliders.svg" alt=""></span>
+                    <span>Filter Results</span>
+                </button>
+
+                <button class="sort-button">
+                    <span class="sort-icon"><img src="images/sorting.png" alt=""></span>
+                    <span>Sort Products</span>
+                </button>
+            </div>
         </section>
     </div>
 
@@ -153,6 +167,19 @@
         </div>
     </div>
 </footer>
+
+<div class="filter-sort-container">
+    <button class="filter-button">
+        <span class="filter-icon"><img src="images/sliders.svg" alt=""></span>
+        <span>Filter Results</span>
+    </button>
+
+    <button class="sort-button">
+        <span class="sort-icon"><img src="images/sorting.png" alt=""></span>
+        <span>Sort Products</span>
+    </button>
+</div>
+
 
 <script src="script.js"></script>
 </body>
