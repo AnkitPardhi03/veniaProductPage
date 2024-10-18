@@ -38,7 +38,7 @@ function showShimmer() {
 
 // Hide shimmer
 function hideShimmer() {
-    shimmerContainer.style.display = 'none';
+    shimmerContainer.style.display = 'none'; 
     productList.style.display = 'grid';
 }
 
@@ -50,7 +50,7 @@ function showError(message) {
     document.body.appendChild(errorContainer);
     setTimeout(() => {
         errorContainer.remove();
-    }, 5000);
+    }, 5000); 
 }
 
 // Load Products with filtering and sorting
@@ -66,7 +66,7 @@ function loadProducts() {
 
     // Check if there are products to display
     if (productChunk.length === 0) {
-        loadMoreButton.style.display = 'none';
+        loadMoreButton.style.display = 'none'; 
         return;
     }
 
@@ -88,20 +88,20 @@ function loadProducts() {
             if (likeButton.classList.toggle('liked')) {
                 likeButton.innerHTML = '❤️';
             } else {
-                likeButton.innerHTML = '🤍';
+                likeButton.innerHTML = '🤍'; 
             }
         });
 
         productList.appendChild(productItem);
     });
 
-    currentProductCount += productChunk.length;
+    currentProductCount += productChunk.length; 
 
     // Hide Load More button if all products are loaded
     if (currentProductCount >= sortedProducts.length) {
-        loadMoreButton.style.display = 'none';
+        loadMoreButton.style.display = 'none'; 
     } else {
-        loadMoreButton.style.display = 'block';
+        loadMoreButton.style.display = 'block'; 
     }
 }
 
@@ -148,20 +148,20 @@ function sortProducts(products) {
 loadMoreButton.addEventListener('click', loadProducts);
 
 sortSelect.addEventListener('change', () => {
-    currentProductCount = 0;
-    loadProducts();
+    currentProductCount = 0; 
+    loadProducts(); 
 });
 
 searchInput.addEventListener('input', () => {
-    currentProductCount = 0;
-    loadProducts();
+    currentProductCount = 0; 
+    loadProducts(); 
 });
 
 // Add event listeners for category checkboxes
 categoryCheckboxes.forEach(checkbox => {
     checkbox.addEventListener('change', () => {
-        currentProductCount = 0;
-        loadProducts();
+        currentProductCount = 0; 
+        loadProducts(); 
     });
 });
 
