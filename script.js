@@ -66,8 +66,11 @@ function loadProducts() {
 
     // Check if there are products to display
     if (productChunk.length === 0) {
-        loadMoreButton.style.display = 'none'; 
+        loadMoreButton.style.display = 'none';
+        document.getElementById('noProductsMessage').style.display = 'block'; // Show no products message
         return;
+    } else {
+        document.getElementById('noProductsMessage').style.display = 'none'; // Hide no products message
     }
 
     productChunk.forEach(product => {
